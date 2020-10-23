@@ -1,0 +1,38 @@
+﻿<br>
+<div class="page-header" style="margin-left: 30%;">
+    <h4> Welcome to Auditor page </h4>
+    <p>All Users with thier Login, Logout Times with ClientIP</p>
+</div>
+<br>
+<div class="card mt-4">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th style="width: 8%"> Id </th>
+                <th style="width: 20%"> Name </th>
+                <th style="width: 20%"> username </th>
+                <th style="width: 20%"> Last Login </th>
+                <th style="width: 20%"> Last Logout </th>
+                <th style="width: 20%"> Client IP </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users | paginate: { 
+                id: 'listing_pagination',
+                itemsPerPage: 5,
+                currentPage: page,
+                totalItems: totalRecords
+                };">
+                <th>{{user.id}}</th>
+                <th>{{user.firstName}} {{user.lastName}}</th>
+                <th>{{user.username}}</th>
+                <th>{{user.loginTime}}</th>
+                <th>{{user.lastlogout}}</th>
+                <th>{{user.clientIP}}</th>
+            </tr>
+        </tbody>
+    </table>
+    <div style="margin-left: 20%;">
+        <pagination-controls id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+    </div>
+</div>
